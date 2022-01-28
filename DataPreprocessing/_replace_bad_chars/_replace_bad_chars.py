@@ -4,7 +4,7 @@ from .dicts_and_lists import replacements
 
 from utils import ParallelProcess
 
-def _replace_bad_chars(X, **params):
+def replace_bad_chars(X, **params):
 
 	print ("Trying to replace bad chars")
 	repls = replacements()

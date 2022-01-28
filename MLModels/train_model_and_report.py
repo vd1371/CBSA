@@ -25,7 +25,7 @@ def train_model_and_report(**params):
 
 	for X_train, Y_train, X_test, Y_test in _generate_XY_batches(**params):
 
-		# model = train_model(model, X_train, Y_train, callback_list, **params)
+		model = train_model(model, X_train, Y_train, callback_list, **params)
 		pass
 		
 	evaluate_classification(X_test, Y_test,

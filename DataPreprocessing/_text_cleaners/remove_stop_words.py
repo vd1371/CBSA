@@ -29,11 +29,16 @@ def _remove_stop_words_for_parallel(X,
 
 	for sw in stop_words:
 		for sentence in X:
-			try:
-				while True:
-					sentence.remove(sw)
-			except ValueError:
-				pass
+
+			if isinstance(sentence, str):
+				sentence.replace(sw, "")
+
+			else:
+				try:
+					while True:
+						sentence.remove(sw)
+				except ValueError:
+					pass
 
 	return X
 

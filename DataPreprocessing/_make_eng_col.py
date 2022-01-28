@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
 
-from ._scaler import _scaler
-
 def make_eng_col(Y, **params):
 	eng_cols = params.get("eng_cols")
 

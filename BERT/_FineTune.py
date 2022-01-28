@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 
 
-from .initialize_bert import initialize_bert
+from ._initialize_bert import initialize_bert
 
 import torch
 
@@ -18,12 +18,12 @@ class FineTune(nn.Module):
       self.relu =  nn.ReLU()
       self.fc1 = nn.Linear(768,512)     
       self.fc2 = nn.Linear(512,1)
-      self.sigmoid = nn.Sigmoid()
+      self.output = nn.Sigmoid()
 
-    def forward(self, sent_id, mask):
+    def forward(self, sent_id, mask, labels):
 
       #pass the inputs to the model
-      _, cls_hs = self.bert(sent_id, attention_mask = mask)
+      _, cls_hs = self.bert(sent_id, attention_mask = mask, return_dict=False)
 
       X = self.fc1(cls_hs)
 
@@ -35,6 +35,6 @@ class FineTune(nn.Module):
       X = self.fc2(X)
       
       # apply softmax activation
-      X = self.sigmoid(X)
+      X = self.output(X)
 
       return X

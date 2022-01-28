@@ -7,3 +7,7 @@ from ._make_eng_col import make_eng_col
 from ._segment_Y import segment_Y
 
 from ._groupby_for_polarity import groupby_for_polarity
+from ._split_val_test import split_val_test
+
+from ._text_cleaners import *
+from ._replace_bad_chars import *

@@ -16,6 +16,6 @@ def get_data(**params):
 	if not n_samples == None:
 		df = df.iloc[:n_samples, :]
 
-	df = df[(df['pubname'] == "Facebook - 群組 或專頁") | (df['pubname'] == "Facebook香港")]
+	# df.dropna(axis = 0, inplace = True)
 
 	return df

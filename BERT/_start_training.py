@@ -1,5 +1,5 @@
-from .train_bert_model import train_bert_model
-from .evaluate import evaluate
+from ._train_bert_model import train_bert_model
+from ._evaluate import evaluate
 
 def start_training(model, train_dataloader, val_dataloader, cross_entropy, optimizer, **params):
 	bert_epochs = params.get("bert_epochs")
@@ -17,7 +17,7 @@ def start_training(model, train_dataloader, val_dataloader, cross_entropy, optim
 	    print('\n Epoch {:} / {:}'.format(epoch + 1, epoch))
 	    
 	    #train model
-	    train_loss, _ = train_model(model, train_dataloader, cross_entropy, optimizer, **params)
+	    train_loss, _ = train_bert_model(model, train_dataloader, cross_entropy, optimizer, **params)
 	    
 	    #evaluate model
 	    valid_loss, _ = evaluate(model, val_dataloader, **params)

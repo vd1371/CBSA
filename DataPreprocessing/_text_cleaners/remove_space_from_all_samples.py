@@ -1,12 +1,17 @@
 
 def _remove_space_from_tokenized_sentence(_list,**params):
 
-	removements = ['', ' ',]
+	removements = [' ',]
 
-	for obj in removements:
+	if isinstance(_list, list):
 
-		while obj in _list:
-			_list.remove(obj)
+		for obj in removements:
+			while obj in _list:
+				_list.remove(obj)
+	
+	elif isinstance(_list, str):
+		for obj in removements:
+			_list.replace(obj, "")
 
 	return _list
 

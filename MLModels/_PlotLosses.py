@@ -1,4 +1,7 @@
-import tensorflow as tf
+from multiprocessing import current_process
+if current_process().name == "MainProcess":
+    import tensorflow as tf
+    
 import matplotlib.pyplot as plt
 
 class PlotLosses(tf.keras.callbacks.Callback):

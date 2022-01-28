@@ -1,8 +1,8 @@
-from .FineTune import *
+from ._FineTune import *
 
 import numpy as np
 import torch
-from sklearn.utils.class_weight import compute_class_weight
+from sklearn.utils.class_weight import compute_class_weight, compute_sample_weight
 from transformers import AdamW
 
 def fine_tune(bert, Y_train, **params):
@@ -16,7 +16,12 @@ def fine_tune(bert, Y_train, **params):
 
 	optimizer = AdamW(model.parameters(), lr = lr_bert)
 
-	class_wts = compute_class_weight('balanced', classes = np.unique(Y_train), y = Y_train.cpu().detach().numpy())
+	class_wts = compute_class_weight(class_weight ='balanced',
+									classes = np.unique(Y_train),
+									y = Y_train.detach().cpu().numpy())
+
+	# class_wts = compute_sample_weight('balanced',
+	# 								y = Y_train)
 
 	# convert class weights to tensor
 	weights= torch.tensor(class_wts, dtype = torch.float)

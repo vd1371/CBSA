@@ -14,5 +14,7 @@ def segment_Y(Y, **params):
 
 	Y[bigger_mask] = 1
 	Y[smaller_mask] = 0
+
+	Y = Y.astype(int)
 	
 	return Y

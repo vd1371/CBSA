@@ -1,7 +1,8 @@
 import os
-from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
-
-from ._PlotLosses import PlotLosses
+from multiprocessing import current_process
+if current_process().name == "MainProcess":
+	from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+	from ._PlotLosses import PlotLosses
 
 
 def get_callbacks(**params):

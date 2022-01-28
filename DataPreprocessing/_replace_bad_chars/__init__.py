@@ -1,1 +1,1 @@
-from ._replace_bad_chars import _replace_bad_chars
+from ._replace_bad_chars import replace_bad_chars

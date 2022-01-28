@@ -28,7 +28,9 @@ def train_bert_model(model, train_dataloader, cross_entropy, optimizer, **params
 		model.zero_grad()
 
 		# get model predictions for the current batch
-		preds = model(sent_id, mask)
+		preds = model(sent_id, mask, labels)
+
+		# preds = (preds > 0.5).int()
 
 		# compute the loss between actual and predicted values
 		loss = cross_entropy(preds, labels)

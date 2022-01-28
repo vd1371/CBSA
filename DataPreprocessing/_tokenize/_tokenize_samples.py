@@ -1,6 +1,6 @@
 import jieba
 
-from .._replace_bad_chars import _replace_bad_chars
+from .._replace_bad_chars import replace_bad_chars
 
 def _tokenize_samples(X,
 					batch_number = None,
@@ -10,7 +10,6 @@ def _tokenize_samples(X,
 
 	for idx, sentence in enumerate(X):
 
-		# sentence = _replace_bad_chars(sentence, replacements)
 		tokenized_sentence = jieba.lcut(str(sentence), cut_all=True)
 		tokenized.append(tokenized_sentence)
 
