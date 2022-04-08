@@ -13,8 +13,8 @@ import pandas as pd
 
 def run(**params):
 	settings = {
-	"n_cores": 1,
-	"n_samples": 1000,
+	"n_cores": 9,
+	"n_samples": None,
 	'embedding_type': 'fasttext',
 
 	"batch_size" : 8,
@@ -44,7 +44,7 @@ def run(**params):
 	"rec_dropout" : 0.25,
 	"LSTM_cells" : [16, 32, 16],
 	"lr_bert": 0.00002,
-	"bert_epochs" : 3,
+	"bert_epochs" : 5,
 	"val_split" : 0.2,
 	"model_verbose" : 2,
 	"checkpoint" : "hfl/chinese-bert-wwm-ext",

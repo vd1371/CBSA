@@ -21,4 +21,4 @@ def load_original_file_and_save_cleaned(**params):
 	with open('./Data/CleanX.pkl', 'wb') as f:
 		pickle.dump(X, f)
 
-	print ("Tokenized file is saved.")
+	print ("Clean file is saved.")

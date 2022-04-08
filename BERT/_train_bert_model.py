@@ -1,6 +1,7 @@
 import numpy as np
 import torch
 import gc
+import time
 
 def train_bert_model(model, train_dataloader, cross_entropy, optimizer, **params):
 
@@ -13,12 +14,14 @@ def train_bert_model(model, train_dataloader, cross_entropy, optimizer, **params
 	# empty list to save model predictions
 	total_preds = []
 
+	start = time.time()
 	# iterate over batches
 	for step, batch in enumerate(train_dataloader):
 
 		# progress update after every 50 batches.
-		# if step % 50 == 0 and not step == 0:
-		#   print('  Batch {:>5,}  of  {:>5,}.'.format(step, len(train_dataloader)))
+		if step % 50 == 0 and not step == 0:
+		  print(f'  Batch {step}  of  {len(train_dataloader)} in {time.time()-start:.2f}')
+		  start = time.time()
 
 		# push the batch to gpu
 		batch = [r.to(device) for r in batch]
