@@ -47,4 +47,4 @@ def train_bert_and_report(**params):
 	bert = initialize_bert(X_train_seq, X_train_mask, **params)
 	model, optimizer, weights, cross_entropy, device = fine_tune(bert, Y_train, **params)
 	start_training(model, train_dataloader, val_dataloader, cross_entropy, optimizer, **params)
-	predict_test(model, Y_test, **params)
+	predict_test(model, X_test_seq, X_test_mask, Y_test, **params)
