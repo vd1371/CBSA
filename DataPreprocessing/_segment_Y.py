@@ -9,12 +9,12 @@ def segment_Y(Y, **params):
 	Y = Y.values.reshape(-1)
 	Y_quantile = np.quantile(Y, Y_quantile, axis = 0)
 
-	bigger_mask = Y > Y_quantile
-	smaller_mask = Y <= Y_quantile
+	bigger_mask = (Y > Y_quantile).copy()
+	smaller_mask = (Y <= Y_quantile).copy()
 
 	Y[bigger_mask] = 1
 	Y[smaller_mask] = 0
 
 	Y = Y.astype(int)
-	
+
 	return Y

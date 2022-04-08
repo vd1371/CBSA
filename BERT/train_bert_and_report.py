@@ -1,20 +1,13 @@
 import numpy as np
 
-from DataLoader import load_XYs
-
 from DataLoader import load_Y
-from DataLoader import save_XYs
+from DataLoader import load_clean_X
 
 from DataPreprocessing import make_eng_col
 from DataPreprocessing import segment_Y
 
-from DataLoader import get_data
-from DataLoader import get_X_Y_from_df
-from DataPreprocessing import remove_space_from_all_samples
-from DataPreprocessing import remove_stop_words
-from DataPreprocessing import replace_bad_chars
-from DataPreprocessing import split_val_test
 
+from DataPreprocessing import split_val_test
 from MLModels import train_test_split_
 
 from ._tokenize_bert import tokenize_bert
@@ -36,11 +29,7 @@ def train_bert_and_report(**params):
 	Y = make_eng_col(Y, **params)
 	Y = segment_Y(Y, **params)
 
-	df = get_data(**params)
-	X, _ = get_X_Y_from_df(df, **params)
-	X = replace_bad_chars(X, **params)
-	X = remove_space_from_all_samples(X)
-	X = remove_stop_words(X, **params)
+	X = load_clean_X(**params)
 
 	X_train, X_test, Y_train, Y_test = train_test_split_(X, Y, **params)
 	X_val, X_test, Y_val, Y_test = split_val_test(X_test, Y_test, **params)

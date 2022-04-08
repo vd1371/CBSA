@@ -27,7 +27,8 @@ def fine_tune(bert, Y_train, **params):
 	weights= torch.tensor(class_wts, dtype = torch.float)
 	weights = weights.to(device)
 	
-	cross_entropy  = nn.NLLLoss(weight = weights)
+	# cross_entropy  = nn.BCELoss(weight = weights)
+	cross_entropy  = nn.BCELoss()
 
 	return model, optimizer, weights, cross_entropy, device
 	

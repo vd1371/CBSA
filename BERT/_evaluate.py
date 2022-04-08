@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 
-def evaluate(model, val_dataloader,**params):
+def evaluate(model, val_dataloader, cross_entropy, **params):
 	device = torch.device("cuda")
 
 	print("\nEvaluating...")
@@ -37,6 +37,9 @@ def evaluate(model, val_dataloader,**params):
 			# model predictions
 			preds = model(sent_id, mask)
 			# compute the validation loss between actual and predicted values
+
+			labels = labels.unsqueeze(1).float()
+			
 			loss = cross_entropy(preds,labels)
 
 			total_loss = total_loss + loss.item()

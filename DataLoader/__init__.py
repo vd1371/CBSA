@@ -12,5 +12,6 @@ from ._save_polarity_to_file import save_polarity_to_file
 
 from ._save_XYs import save_XYs
 from ._load_XYs import load_XYs
+from .load_clean_X import load_clean_X
 
 from .clean_data import clean_data

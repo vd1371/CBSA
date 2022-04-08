@@ -1,5 +1,6 @@
 import numpy as np
 import torch
+import gc
 
 def train_bert_model(model, train_dataloader, cross_entropy, optimizer, **params):
 
@@ -28,9 +29,13 @@ def train_bert_model(model, train_dataloader, cross_entropy, optimizer, **params
 		model.zero_grad()
 
 		# get model predictions for the current batch
-		preds = model(sent_id, mask, labels)
+		# preds = model(sent_id, mask, labels)
+		preds = model(sent_id, mask)
 
-		# preds = (preds > 0.5).int()
+		# preds = torch.flatten((preds > 0.5).int())
+		# preds = (preds > 0.5).float()
+
+		labels = labels.unsqueeze(1).float()
 
 		# compute the loss between actual and predicted values
 		loss = cross_entropy(preds, labels)
@@ -52,6 +57,9 @@ def train_bert_model(model, train_dataloader, cross_entropy, optimizer, **params
 
 		# append the model predictions
 		total_preds.append(preds)
+
+		torch.cuda.empty_cache()
+		gc.collect()
 
 	# compute the training loss of the epoch
 	avg_loss = total_loss / len(train_dataloader)

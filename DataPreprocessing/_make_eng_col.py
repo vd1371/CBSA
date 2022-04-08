@@ -6,7 +6,7 @@ def make_eng_col(Y, **params):
 
 	print('adding engagement column')
 
-	Y['engagement'] = Y[eng_cols].sum(axis = 1)/np.log(Y['fans_count'])
+	Y.loc[:, 'engagement'] = Y[eng_cols].sum(axis = 1)/np.log(Y['fans_count'])
 	Y.drop(eng_cols + ['fans_count'], axis = 1, inplace = True)
 
 	

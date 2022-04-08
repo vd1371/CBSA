@@ -11,7 +11,8 @@ def get_data(**params):
 
 	direc = "./Data/analytics_challenge_dataset_ex210911-Clean.csv"
 	small_direc = "./Data/analytics_challenge_dataset_ex210911-Small.csv"
-	df = pd.read_csv(direc if n_samples == None else small_direc, index_col = 0)
+	# df = pd.read_csv(direc if n_samples == None else small_direc, index_col = 0)
+	df = pd.read_csv(direc, index_col = 0)
 
 	if not n_samples == None:
 		df = df.iloc[:n_samples, :]

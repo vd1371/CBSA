@@ -141,3 +141,4 @@ reports/*
 *.pkl
 *.h5
 *.npy
+*.pt

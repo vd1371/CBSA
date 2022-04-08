@@ -1,7 +1,7 @@
 from DataLoader import *
 from DataPreprocessing import *
 from embedding import *
-from MLModels import *
+# from MLModels import *
 # from utils import *
 # from BERT import *
 # from Polarity import *
@@ -11,14 +11,13 @@ import time
 
 import pandas as pd
 
-
 def run(**params):
 	settings = {
-	"n_cores": 10,
-	"n_samples": None,
+	"n_cores": 1,
+	"n_samples": 1000,
 	'embedding_type': 'fasttext',
 
-	"batch_size" : 256,
+	"batch_size" : 8,
 	"should_warm_up": False,
 	"train_epochs" : 100,
 	"lr": 0.001,
@@ -45,7 +44,7 @@ def run(**params):
 	"rec_dropout" : 0.25,
 	"LSTM_cells" : [16, 32, 16],
 	"lr_bert": 0.00002,
-	"bert_epochs" : 10,
+	"bert_epochs" : 3,
 	"val_split" : 0.2,
 	"model_verbose" : 2,
 	"checkpoint" : "hfl/chinese-bert-wwm-ext",
@@ -64,8 +63,14 @@ def run(**params):
 	# parse_pad_and_save_x_train_test(**settings)
 	
 	# Each time
-	train_model_and_report(**settings)
-	# train_bert_and_report(**settings)
+	# train_model_and_report(**settings)
+
+
+	# Bert
+	# load_original_file_and_save_cleaned(**settings)
+
+	from BERT import train_bert_and_report
+	train_bert_and_report(**settings)
 
 	#Polarity
 	# df = get_data_for_polarity_analysis(**settings)

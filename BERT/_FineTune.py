@@ -20,7 +20,7 @@ class FineTune(nn.Module):
       self.fc2 = nn.Linear(512,1)
       self.output = nn.Sigmoid()
 
-    def forward(self, sent_id, mask, labels):
+    def forward(self, sent_id, mask):
 
       #pass the inputs to the model
       _, cls_hs = self.bert(sent_id, attention_mask = mask, return_dict=False)
